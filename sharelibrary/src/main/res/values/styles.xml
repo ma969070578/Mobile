@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--PopupWindow从上到下显示动画-->
+    <style name="popwin_anim_toptobottom">
+        <item name="android:windowEnterAnimation">@anim/popuw_goods_classify_toptobottom</item>
+        <item name="android:windowExitAnimation">@anim/popuw_goods_classify_bottomtotop</item>
+    </style>
+    <!--PopupWindow从下到上显示动画-->
+    <style name="popwin_anim_bottomtotop">
+        <item name="android:windowEnterAnimation">@anim/popuw_goods_size_bottomtotop</item>
+        <item name="android:windowExitAnimation">@anim/popuw_goods_size_toptobottom</item>
+    </style>
+
+
+</resources>

@@ -1,0 +1,1 @@
+include ':app', ':library', ':locationlib', ':sharelibrary', ':baiduupdatelibrary', ':360updatelibrary'

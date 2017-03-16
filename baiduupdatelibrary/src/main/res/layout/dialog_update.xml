@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@mipmap/bg_update"/>
+
+        <ImageView
+            android:id="@+id/iv_dialog_update_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:padding="@dimen/s20"
+            android:src="@mipmap/icon_update_close"/>
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_dialog_update_dos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gjb_background_gray"
+        android:padding="@dimen/s32"
+        android:text=""
+        android:textColor="@color/gjb_text_gray"/>
+
+    <Button
+        android:id="@+id/btn_dialog_update"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/s130"
+        android:background="@drawable/select_login_orange"
+        android:text="立即升级"
+        android:textColor="@color/white"
+        android:textSize="@dimen/s48"/>
+
+</LinearLayout>

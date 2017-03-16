@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="s2">0.67dp</dimen>
+    <dimen name="s20">6.67dp</dimen>
+    <dimen name="s22">7.33dp</dimen>
+    <dimen name="s32">10.67dp</dimen>
+    <dimen name="s42">14dp</dimen>
+    <dimen name="s48">16dp</dimen>
+    <dimen name="s64">21.33dp</dimen>
+    <dimen name="s130">43.33dp</dimen>
+</resources>

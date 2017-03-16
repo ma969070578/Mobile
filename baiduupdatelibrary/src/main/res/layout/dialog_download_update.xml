@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/s22"
+        android:text="更新进度"
+        android:textColor="@color/gjb_text_black"
+        android:textSize="@dimen/s48"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/s2"
+        android:background="@color/shb_line_darkgray"/>
+
+    <ProgressBar
+        android:id="@+id/pb_download_loading"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/s64"
+        android:max="100"
+        android:progress="0"/>
+
+    <TextView
+        android:id="@+id/tv_download_percent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/s32"
+        android:layout_marginRight="@dimen/s64"
+        android:layout_marginTop="-10dp"
+        android:gravity="right"
+        android:text="0/100"
+        android:textColor="@color/gjb_text_black"
+        android:textSize="@dimen/s42"/>
+
+</LinearLayout>
