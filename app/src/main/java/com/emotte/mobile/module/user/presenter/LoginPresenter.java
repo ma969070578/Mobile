@@ -7,7 +7,6 @@ import com.emotte.mobile.bean.Return;
 import com.emotte.mobile.http.HttpUtils;
 import com.emotte.mobile.module.user.iview.ILoginView;
 import com.emotte.mobile.utils.MD5;
-import com.emotte.mobile.utils.PreferencesUtils;
 import com.emotte.mobile.utils.ProgressDlg;
 import com.google.gson.Gson;
 import com.lzy.okgo.callback.StringCallback;
