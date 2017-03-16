@@ -1,5 +1,6 @@
 package com.emotte.mobile.app;
 
+import android.content.Context;
 import android.content.pm.ApplicationInfo;
 
 import com.emotte.library.base.LibApp;
@@ -8,6 +9,8 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
+
+import org.acra.ACRA;
 
 import java.util.logging.Level;
 
@@ -27,6 +30,15 @@ public class App extends LibApp {
         super.onCreate();
         instance = this;
         init();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+
+        // The following line triggers the initialization of ACRA
+        // https://github.com/ACRA/acra
+        ACRA.init(this);
     }
 
     public static App getInstance() {

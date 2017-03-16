@@ -55,4 +55,8 @@ dependencies {
     compile project(':locationlib')
     compile project(':sharelibrary')
     compile project(':baiduupdatelibrary')
+
+
+    compile 'ch.acra:acra:4.9.0'
+
 }
