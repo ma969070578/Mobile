@@ -54,4 +54,5 @@ dependencies {
     compile project(':library')
     compile project(':locationlib')
     compile project(':sharelibrary')
+    compile project(':baiduupdatelibrary')
 }

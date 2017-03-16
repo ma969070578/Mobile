@@ -7,6 +7,7 @@ import com.emotte.mobile.bean.Return;
 import com.emotte.mobile.http.HttpUtils;
 import com.emotte.mobile.module.user.iview.ILoginView;
 import com.emotte.mobile.utils.MD5;
+import com.emotte.mobile.utils.PreferencesHelper;
 import com.emotte.mobile.utils.ProgressDlg;
 import com.google.gson.Gson;
 import com.lzy.okgo.callback.StringCallback;
@@ -34,8 +35,8 @@ public class LoginPresenter {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                PreferencesUtils.putString(context, "name", name);
-                PreferencesUtils.putString(context, "password", password);
+                PreferencesHelper.putString( "name", name);
+                PreferencesHelper.putString( "password", password);
                 iLoginView.registerSuccess();
                 ProgressDlg.dismissDialog();
             }

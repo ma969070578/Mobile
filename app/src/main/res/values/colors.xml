@@ -3,4 +3,28 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="gray">#cccccc</color>
+    <color name="list_row_selected">#78c8e6</color>
+    <color name="red">#FF1014</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!--浅灰色线条-->
+    <color name="gjb_line_frenchgray">#e6e6e6</color>
+    <!--黄色线条-->
+    <color name="gjb_line_orange">#ff7e00</color>
+
+    <!--黑色背景-->
+    <color name="gjb_background_black">#393939</color>
+
+    <color name="gjb_background_orange">#ff4200</color>
+    <!--灰色背景-->
+    <color name="gjb_background_gray">#f2f3f5</color>
+
+    <!--黑色文字-->
+    <color name="gjb_text_black">#242424</color>
+    <!--灰色文字-->
+    <color name="gjb_text_gray">#7a7a7a</color>
+    <!--红色文字-->
+    <color name="gjb_text_red">#FF0000</color>
 </resources>

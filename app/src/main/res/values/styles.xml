@@ -4,8 +4,16 @@
     <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <!-- Customize your theme here. -->
     </style>
+
     <!--ProgressDlg-->
-    <style name="progressDlg" parent="Theme.AppCompat.Light.Dialog">
+    <style name="progressDlg" parent="android:Theme.Holo.Light.Dialog">
         <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowBackground">@color/transparent</item>
+    </style>
+
+    <!-- white dialog -->
+    <style name="WhiteDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/dialog_white_bg</item>
+        <item name="android:windowNoTitle">true</item>
     </style>
 </resources>
