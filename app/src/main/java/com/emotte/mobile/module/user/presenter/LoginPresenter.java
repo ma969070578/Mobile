@@ -69,6 +69,7 @@ public class LoginPresenter {
             @Override
             public void onError(Call call, Response response, Exception e) {
                 super.onError(call, response, e);
+                iLoginView.loginFail("");
             }
         });
 

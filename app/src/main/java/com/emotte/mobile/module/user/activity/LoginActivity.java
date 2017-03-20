@@ -27,17 +27,17 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
 
 
     @Bind(R.id.et_name)
-    TextInputEditText etName;
+    private TextInputEditText etName;
     @Bind(R.id.et_password)
-    TextInputEditText etPassword;
+    private TextInputEditText etPassword;
     @Bind(R.id.input_name)
-    TextInputLayout inputName;
+    private TextInputLayout inputName;
     @Bind(R.id.input_password)
-    TextInputLayout inputPassword;
+    private TextInputLayout inputPassword;
     @Bind(R.id.btn_login_register)
-    Button btnLoginRegister;
+    private Button btnLoginRegister;
     @Bind(R.id.btn_login_login)
-    Button btnLoginLogin;
+    private Button btnLoginLogin;
 
 
     private LoginPresenter mPresenter;
