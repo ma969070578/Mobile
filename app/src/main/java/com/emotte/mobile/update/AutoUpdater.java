@@ -84,7 +84,7 @@ public class AutoUpdater {
             Logger.i(s.toString());
             Gson gson = new Gson();
             AppUpdateBean appFile = gson.fromJson(s, AppUpdateBean.class);
-            if (appFile != null && Return.RET_SUCCESS.equals(appFile.getCode()) && appFile
+            if (appFile != null && Return.RET_SUCCESS==appFile.getCode() && appFile
                     .getData() != null) {
                 int type = appFile.getData().getType();
                 if (type == 1) {// 第三方更新  需要选择对应Module

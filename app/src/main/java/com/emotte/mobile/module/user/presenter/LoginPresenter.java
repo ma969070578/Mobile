@@ -35,8 +35,8 @@ public class LoginPresenter {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                PreferencesHelper.putString( "name", name);
-                PreferencesHelper.putString( "password", password);
+                PreferencesHelper.putString("name", name);
+                PreferencesHelper.putString("password", password);
                 iLoginView.registerSuccess();
                 ProgressDlg.dismissDialog();
             }
@@ -59,9 +59,9 @@ public class LoginPresenter {
                 Logger.i(s.toString());
                 Gson gson = new Gson();
                 Return user = gson.fromJson(s, Return.class);
-                if (user != null && Return.RET_SUCCESS.equals(user.getCode())  ) {
+                if (user != null && Return.RET_SUCCESS == user.getCode()) {
                     iLoginView.loginSuccess();
-                }else {
+                } else {
                     iLoginView.loginFail(user.getMsg());
                 }
             }

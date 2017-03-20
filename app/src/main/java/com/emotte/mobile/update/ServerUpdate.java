@@ -4,14 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 
 import com.emotte.mobile.R;
 import com.emotte.mobile.bean.AppUpdateBean;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.FileCallback;
+import com.lzy.okgo.request.BaseRequest;
 
 import java.io.File;
 
+import okhttp3.Call;
+import okhttp3.Response;
 
 
 /**
@@ -59,60 +65,44 @@ public class ServerUpdate {
         String filename = getFileName(updateUrl);
         final String save_path = folder + "/" + filename;
         Log.i("====", save_path);
-       /* final RequestParams params = new RequestParams(updateUrl);
-        params.setSaveFilePath(save_path);
-        x.http().get(params, new Callback.ProgressCallback<File>() {
-            DownLoadingDialog mLoadingDialog;
 
-            @Override
-            public void onSuccess(File result) {
-                // TODO Auto-generated method stub
 
-            }
+        OkGo.get(updateUrl)
+                .execute(new FileCallback(filename) {
+                    DownLoadingDialog mLoadingDialog;
 
-            @Override
-            public void onError(Throwable ex, boolean isOnCallback) {
-                // TODO Auto-generated method stub
+                    @Override
+                    public void onBefore(BaseRequest request) {
+                        if (mLoadingDialog == null) {
+                            mLoadingDialog = new DownLoadingDialog(context, R.style
+                                    .WhiteDialog);
+                        }
+                        mLoadingDialog.show(mLoadingDialog);
+                    }
 
-            }
+                    @Override
+                    public void onSuccess(File file, Call call, Response response) {
+                        mLoadingDialog.dismiss();
+                        install(context, save_path);
+                    }
 
-            @Override
-            public void onCancelled(CancelledException cex) {
-                // TODO Auto-generated method stub
+                    @Override
+                    public void downloadProgress(long currentSize, long totalSize, float progress, long networkSpeed) {
+                        System.out.println("downloadProgress -- " + totalSize + "  " + currentSize + "  " + progress + "  " + networkSpeed);
 
-            }
+//                        String downloadLength = Formatter.formatFileSize(App.getInstance(), currentSize);
+//                        String totalLength = Formatter.formatFileSize(App.getInstance(), totalSize);
 
-            @Override
-            public void onFinished() {
-                // TODO Auto-generated method stub
-                mLoadingDialog.dismiss();
-                install(context, save_path);
-            }
+                        mLoadingDialog.setLoading((int) (progress * 100));
+                    }
 
-            @Override
-            public void onWaiting() {
-                // TODO Auto-generated method stub
+                    @Override
+                    public void onError(Call call, @Nullable Response response, @Nullable Exception e) {
+                        super.onError(call, response, e);
 
-            }
+                    }
+                });
 
-            @Override
-            public void onStarted() {
-                // TODO Auto-generated method stub
-                if (mLoadingDialog == null) {
-                    mLoadingDialog = new DownLoadingDialog(context, R.style
-                            .WhiteDialog);
-                }
-                mLoadingDialog.show(mLoadingDialog);
-            }
-
-            @Override
-            public void onLoading(long total, long current,
-                                  boolean isDownloading) {
-                // TODO Auto-generated method stub
-                long per = (current * 100 / total);
-                mLoadingDialog.setLoading((int) per);
-            }
-        });*/
     }
 
     /**
