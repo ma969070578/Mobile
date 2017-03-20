@@ -2,16 +2,19 @@ package com.emotte.mobile.http;
 
 import android.content.Context;
 
+import com.emotte.mobile.bean.Return;
 import com.emotte.mobile.utils.DeviceCommon;
 import com.emotte.mobile.utils.MD5;
 import com.emotte.mobile.utils.PreferencesHelper;
 import com.emotte.mobile.utils.ScreenUtils;
+import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.model.HttpHeaders;
 import com.lzy.okgo.request.GetRequest;
 import com.lzy.okgo.request.PostRequest;
 import com.lzy.okgo.request.PutRequest;
+import com.orhanobut.logger.Logger;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,6 +24,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 /**
  * Created by maq on 2016/11/26.
@@ -74,7 +80,7 @@ public class HttpUtils {
     /**
      * 方法必须在initRequest后调用
      */
-    public static  void initHttpHeader(){
+    public static void initHttpHeader() {
         HttpHeaders headers = new HttpHeaders();
         headers.put("commonHeaderKey1", "commonHeaderValue1");
         headers.put("uuid", PreferencesHelper.getString("uuid", ""));
@@ -130,7 +136,6 @@ public class HttpUtils {
     }
 
 
-
     public static <T> void testget(TreeMap<String, String> map, StringCallback mcallback) {
         post(URL_METHOD, map, mcallback);
     }
@@ -168,10 +173,12 @@ public class HttpUtils {
         // 为sign进行md5加密
         return MD5.str2MD5(sign);
     }
+
     public static final String HOST = "app.95081.com";
-//    public static final String APPMGR_HOST = "erp.95081.com";
+    //    public static final String APPMGR_HOST = "erp.95081.com";
     public static final String APPMGR_HOST = "http://192.168.10.12:8080";
     public static final String APP_UPDATE = "/appMgr/gjbUpdate.jsp";
+    public static final int ERR_CODE_JSON = 101;
 
     public static <T> void checkUpdate(TreeMap<String, String> map, StringCallback
             callBack) {
@@ -179,17 +186,73 @@ public class HttpUtils {
 
     }
 
-    public static <T> void usernameLogin(TreeMap<String, String>map,StringCallback
+    public static <T> void usernameLogin(TreeMap<String, String> map, StringCallback
             callBack) {
         post(APPMGR_HOST + "/appMgr/user/login", map, callBack);
     }
 
+    /*public static  void usernameLogin2(TreeMap<String, String> map,  ShakeRequestCallBack<T> callBack,Class<T> clazz) {
+        post2(APPMGR_HOST + "/appMgr/user/login", map, getRequestCallBack(callBack,clazz));
+    }*/
+
+    public static <T extends Return> void post2(String url, TreeMap<String, String> map, ShakeRequestCallBack<T> callBack,Class<T> clazz) {
+        PostRequest request = OkGo.post(url);
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String name = entry.getKey();
+            String value = entry.getValue();
+
+            request.params(name, value);
+        }
+        request.params("sign", sign(map));
+        request.execute(getRequestCallBack(callBack,clazz));
+    }
 
 
+    public static <T extends Return> StringCallback getRequestCallBack(
+            final ShakeRequestCallBack<T> callBack, final Class<T> clazz) {
+        return new StringCallback() {
+
+            @Override
+            public void onSuccess(String s, Call call, Response response) {
+                if (s == null) return;
+                if (callBack == null) return;
 
 
+                Gson gson = new Gson();
 
+                T entity = null;
+                try {
+                    entity = gson.fromJson(s, clazz);
+                } catch (Exception e) {
+                    Logger.e("parse json", e);
+                    callBack.onFailed(ERR_CODE_JSON, "解析json错误");
+                }
 
+                if (entity != null&&Return.RET_SUCCESS==entity.getCode()) {
+                    Logger.i("entity is null");
+                    callBack.onsuccess(entity);
+                }else {
+                    callBack.onFailed(entity.getCode(), entity.getMsg());
+                }
+
+            }
+
+            @Override
+            public void onError(Call call, Response response, Exception e) {
+                super.onError(call, response, e);
+                callBack.onError(404, e.getMessage());
+            }
+        };
+
+    }
+
+    public static interface ShakeRequestCallBack<T extends Return> {
+        public void onsuccess(T entity);
+
+        public void onError(int code, String msg);
+
+        public void onFailed(int code, String msg);
+    }
 
 
 }

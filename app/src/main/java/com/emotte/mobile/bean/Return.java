@@ -5,9 +5,9 @@ import java.io.Serializable;
 
 public class Return extends EntityBase implements Serializable {
     private static final long serialVersionUID = 2278901437390104424L;
-    public final static String RET_SUCCESS = "0";
-    public final static String RET_FAILED = "-1";
-    public final static String RET_ERROR = "-2";
+    public final static int RET_SUCCESS = 0;
+    public final static int RET_FAILED = -1;
+    public final static int RET_ERROR = -2;
     // 生成订单成功但生成结算单失败 页面应跳入我的订单界面
     public final static String RET_ACCOUNT_FAILED = "-3";
     // 登录失败 页面需重新登录
@@ -17,7 +17,7 @@ public class Return extends EntityBase implements Serializable {
     // 绑定礼品卡或优惠券失败
     public final static String RET_BIND_FAILED = "-11";
 
-    private String code;
+    private int code;
 
     private String msg;
 
@@ -25,11 +25,11 @@ public class Return extends EntityBase implements Serializable {
 
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
